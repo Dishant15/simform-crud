@@ -107,11 +107,15 @@ def project_create(request, template_name='crudApp/project_form.html'):
 @login_required(login_url='/user_login')
 def project_update(request, slug, template_name='crudApp/project_form.html'):
     project = get_object_or_404(Project, slug=slug)
-    form = ProjectForm(request.POST or None, instance=project)
-    if form.is_valid():
-        form.save()
-        return redirect('/projects')
-    return render(request, template_name, {'form': form})
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('/projects')
+        return render(request, template_name, {'form': form})
+    else:
+        form = ProjectForm(instance=project)
+        return render(request, template_name, {'form': form})
 
 
 @login_required(login_url='/user_login')
