@@ -25,7 +25,7 @@ SECRET_KEY = 'ed@ytem6m&r!p@@3*jj^zk@rsgdixjn@1_af20iwgrx!x2!=o#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,7 +55,6 @@ ROOT_URLCONF = 'crudProj.urls'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
-MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
 TEMPLATES = [
     {
@@ -126,7 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR,]
 
-MEDIA_ROOT = MEDIA_DIR
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
 LOGIN_URL = '/crudApp/user_login/'
